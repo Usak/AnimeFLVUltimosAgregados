@@ -15,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
@@ -29,7 +28,7 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
 
     private final String url = "https://www.kimonolabs.com/api/cogu9rj8?apikey=a4497d853ceb044be7b52a41e72dd838";
     private static final String TAG = "UltimosAgregados";
-    private List<Item> itemList = new ArrayList<Item>();
+    private List<Item> itemList = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -62,7 +61,6 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
 
     @Override
     public void onRefresh() {
-
         itemList.clear();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -84,8 +82,12 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
             setProgressBarIndeterminateVisibility(false);
                 /* Download complete. Lets update UI */
             if (result == 1) {
-                adapter = new MyRecyclerAdapter(UltimosAgregados.this, itemList);
-                mRecyclerView.setAdapter(adapter);
+                if (adapter == null) {
+                    adapter = new MyRecyclerAdapter(UltimosAgregados.this, itemList);
+                    mRecyclerView.setAdapter(adapter);
+                } else {
+                    adapter.notifyDataSetChanged();
+                }
             } else {
                 Log.e(TAG, "Failed to fetch data!");
             }
@@ -135,7 +137,6 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
 
                 for (int i = 0; i < agregados.length(); i++) {
                     JSONObject agregado = agregados.getJSONObject(i);
-
                     Item item = new Item();
                     item.setTitle(agregado.getJSONObject("title").optString("text"));
                     item.setThumbnail(agregado.getJSONObject("thumbnail").optString("src"));
