@@ -62,15 +62,10 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
     @Override
     public void onRefresh() {
         itemList.clear();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncHttpTask().execute(url);
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        },2000);
-
+        new AsyncHttpTask().execute(url);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
+
     public class AsyncHttpTask extends AsyncTask<String, Void, Integer> {
         @Override
         protected void onPreExecute() {
@@ -132,7 +127,7 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
                 JSONArray agregados = response.optJSONObject("results").optJSONArray("Últimos agregados");
 
                 if (null == itemList) {
-                    itemList = new ArrayList<Item>();
+                    itemList = new ArrayList<>();
                 }
 
                 for (int i = 0; i < agregados.length(); i++) {
