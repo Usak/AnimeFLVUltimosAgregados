@@ -1,5 +1,7 @@
 package com.usak.animeflvultimosagregados;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,8 +25,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import android.util.Log;
+import android.view.View;
 
-public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener, MyRecyclerAdapter.ClickListener {
 
     private final String url = "https://www.kimonolabs.com/api/cogu9rj8?apikey=a4497d853ceb044be7b52a41e72dd838";
     private static final String TAG = "UltimosAgregados";
@@ -66,6 +69,11 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
+    @Override
+    public void itemClicked(View view, int i) {
+        startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(itemList.get(i).getUrl())));
+    }
+
     public class AsyncHttpTask extends AsyncTask<String, Void, Integer> {
         @Override
         protected void onPreExecute() {
@@ -80,6 +88,7 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
                 if (adapter == null) {
                     adapter = new MyRecyclerAdapter(UltimosAgregados.this, itemList);
                     mRecyclerView.setAdapter(adapter);
+                    adapter.setClickListener(UltimosAgregados.this);
                 } else {
                     adapter.notifyDataSetChanged();
                 }
@@ -135,6 +144,7 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
                     Item item = new Item();
                     item.setTitle(agregado.getJSONObject("title").optString("text"));
                     item.setThumbnail(agregado.getJSONObject("thumbnail").optString("src"));
+                    item.setUrl(agregado.getJSONObject("title").optString("href"));
                     itemList.add(item);
                 }
             } catch (JSONException e) {

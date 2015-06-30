@@ -6,6 +6,7 @@ package com.usak.animeflvultimosagregados;
 public class Item {
     private String title;
     private String thumbnail;
+    private String url;
 
     public String getTitle() {
         return title;
@@ -21,5 +22,13 @@ public class Item {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
