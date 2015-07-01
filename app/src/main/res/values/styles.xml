@@ -8,6 +8,7 @@
         <item name="android:colorPrimaryDark">#E64A19</item>
         <item name="android:colorAccent">#536DFE</item>
         <item name="android:textColorPrimary">#212121</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
     <style name="AppThemeText" parent="AppTheme">
         <item name="android:textColor">#FFFFFF</item>

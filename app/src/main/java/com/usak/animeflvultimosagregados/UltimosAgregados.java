@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,14 +18,10 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.List;
-import android.util.Log;
-import android.view.View;
 
 public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener, MyRecyclerAdapter.ClickListener {
 
@@ -47,7 +43,6 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("AnimeFLV");
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
