@@ -39,8 +39,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Li
         Item item = itemList.get(i);
 
         Picasso.with(mContext).load(item.getThumbnail())
-                .error(R.drawable.placeholder)
                 .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .into(listRowHolder.thumbnail);
 
         listRowHolder.title.setText(Html.fromHtml(item.getTitle()));
@@ -59,6 +59,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Li
     public interface ClickListener {
         public void itemClicked(View view, int i);
     }
+
     public class ListRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected ImageView thumbnail;
         protected TextView title;
