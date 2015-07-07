@@ -29,7 +29,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Li
 
     @Override
     public ListRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, null);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tile, null);
         ListRowHolder mh = new ListRowHolder(v);
         return mh;
     }

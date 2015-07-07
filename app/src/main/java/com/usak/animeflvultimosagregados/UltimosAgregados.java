@@ -47,8 +47,11 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-     //   mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false));
+
+      //  mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
+        mRecyclerView.setHasFixedSize(true);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_dark,
@@ -134,18 +137,18 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
                 JSONArray agregados = response.optJSONArray("results");
 
                 if (null == itemList) {
-                    itemList = new ArrayList<>();
-                }
+                itemList = new ArrayList<>();
+            }
 
-                for (int i = 0; i < agregados.length(); i++) {
-                    JSONObject agregado = agregados.getJSONObject(i);
-                    Item item = new Item();
-                    item.setTitle(agregado.optString("episode/_title"));
-                    item.setThumbnail(agregado.optString("thumbnail"));
-                    item.setUrl(agregado.optString("episode"));
-                    itemList.add(item);
-                }
-            } catch (JSONException e) {
+            for (int i = 0; i < agregados.length(); i++) {
+                JSONObject agregado = agregados.getJSONObject(i);
+                Item item = new Item();
+                item.setTitle(agregado.optString("episode/_title"));
+                item.setThumbnail(agregado.optString("thumbnail"));
+                item.setUrl(agregado.optString("episode"));
+                itemList.add(item);
+            }
+        } catch (JSONException e) {
                 e.printStackTrace();
             }
         }

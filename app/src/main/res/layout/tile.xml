@@ -5,12 +5,18 @@
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:src="@drawable/placeholder"
+        android:scaleType="centerCrop"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"/>
+        android:background="#80000000"
+        android:maxLines="3"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:theme="@style/AppThemeText"/>
 </RelativeLayout>
