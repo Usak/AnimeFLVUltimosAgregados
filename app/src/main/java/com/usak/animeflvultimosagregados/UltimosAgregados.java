@@ -65,6 +65,7 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
 
     @Override
     public void onRefresh() {
+        itemList.clear();
         new AsyncHttpTask().execute(url);
         mSwipeRefreshLayout.setRefreshing(false);
     }
@@ -99,7 +100,6 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
 
         @Override
         protected Integer doInBackground(String... params) {
-            itemList = null;
             Integer result = 0;
             HttpURLConnection urlConnection;
 
