@@ -86,13 +86,9 @@ public class UltimosAgregados extends ActionBarActivity implements SwipeRefreshL
             setProgressBarIndeterminateVisibility(false);
                 /* Download complete. Lets update UI */
             if (result == 1) {
-                if (adapter == null) {
-                    adapter = new MyRecyclerAdapter(UltimosAgregados.this, itemList);
-                    mRecyclerView.setAdapter(adapter);
-                    adapter.setClickListener(UltimosAgregados.this);
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
+                adapter = new MyRecyclerAdapter(UltimosAgregados.this, itemList);
+                mRecyclerView.setAdapter(adapter);
+                adapter.setClickListener(UltimosAgregados.this);
             } else {
                 Log.e(TAG, "Failed to fetch data!");
             }
